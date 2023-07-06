@@ -1,0 +1,13 @@
+.slick-dots {
+    width: 1210px;
+}
+
+.gameList {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.games {
+    width: 50px;
+}
