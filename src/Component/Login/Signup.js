@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import '../../Css/Login.css'
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
@@ -8,7 +8,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 
 
 
-const Signup = () => {
+const Signup = ({ notification, setReload }) => {
 
     const history = new useHistory();
 
@@ -24,9 +24,9 @@ const Signup = () => {
                 // photoURL
             });
 
-            console.log('Sign up secessfully!');
-            console.log('user-info:', result.user.displayName);
+            notification('success', 'Signed up successfully !')
             history.push("/")
+            setReload(true)
         } catch (error) {
             console.log(error.message);
         }
@@ -126,6 +126,9 @@ const Signup = () => {
             >
                 <Button type="primary" htmlType="submit">
                     Sign up
+                </Button>
+                <Button type="primary" icon={<ArrowLeftOutlined />} style={{ marginTop: 10 }} onClick={() => history.push("/login")} ghost>
+                    Back
                 </Button>
             </Form.Item>
         </Form>

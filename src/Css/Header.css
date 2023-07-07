@@ -1,3 +1,6 @@
 .ant-menu-item-group-list {
     background-color: white;
 }
+.ant-menu-sub, .ant-menu-vertical{
+    width: 100px !important;
+}

@@ -3,9 +3,11 @@
 }
 
 .gameList {
+    padding: 50px;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .games {

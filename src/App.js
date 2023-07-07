@@ -13,11 +13,20 @@ import 'firebase/compat/auth';
 import Login from './Component/Login/Login';
 import Signup from './Component/Login/Signup';
 import { useEffect, useState } from 'react';
-
+import { Alert } from 'antd';
+import Swal from 'sweetalert2'
+import About from './Component/About';
+import User from './Component/User/User';
 
 function App() {
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({
+    userName: '',
+    email: '',
+    avt: '',
+    uid: ''
+  });
+  const [reload, setReload] = useState(false)
   const config = {
     apiKey: 'AIzaSyDafK_Fk0gXKC5zEgXdUGNpIT_s_aSexGs',
     authDomain: 'spck-login-b01d4.firebaseapp.com',
@@ -34,26 +43,39 @@ function App() {
         return;
       }
       console.log('Logged in user: ', userLogin);
-      setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL });
-      // notification("success", "Logged in successfully!")
-      // const token = await userLogin.getIdToken();
-      // console.log('Logged in user token: ', token);
+      setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL, email: userLogin.email, uid: userLogin.uid });
     });
 
     return () => unregisterAuthObserver();
-  }, []);
+  }, [reload]);
+
+  const notification = (icon, title) => {
+    return Swal.fire({
+      position: 'top',
+      icon: icon,
+      title: title,
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+  }
+
+
 
   return (
     <Router>
       <div className="App">
-        <Header user={user} />
+        <Header notification={notification} user={user} />
 
         {/* <Home/> */}
 
         <Switch>
           <Route path="/" exact component={() => <Content />} ></Route>
-          <Route path="/info-account" exact component={() => <Login />} ></Route>
-          <Route path="/signup" exact component={() => <Signup user={user} />} ></Route>
+          {/* <Route path="/info-account" exact component={() => <Login />} ></Route> */}
+          <Route path="/login" exact component={() => <Login notification={notification} />} ></Route>
+          <Route path="/signup" exact component={() => <Signup notification={notification} user={user} setReload={setReload} />} ></Route>
+          <Route path="/about" exact component={() => <About notification={notification} user={user} />} ></Route>
+          <Route path="/information-user" exact component={() => <User notification={notification} user={user} />} ></Route>
         </Switch>
       </div>
     </Router>

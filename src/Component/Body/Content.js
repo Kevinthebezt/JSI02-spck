@@ -1,9 +1,11 @@
 import '../../Css/Content.css'
 import rdr2 from '../../images/rdr2.jpg'
-import { Carousel } from 'antd';
+import { Carousel, Card, FloatButton } from 'antd';
 import { useEffect, useState } from 'react'
 
 function Content() {
+    const { Meta } = Card;
+
     const contentStyle = {
         height: '540px',
         color: '#fff',
@@ -40,7 +42,7 @@ function Content() {
     return (
         <>
             <Carousel autoplay>
-                <div>
+                {/* <div>
                     <h3 style={contentStyle}><img src={imgs} /></h3>
                 </div>
                 <div>
@@ -57,7 +59,7 @@ function Content() {
                     <h3 style={contentStyle}>
                         <img src={imgs} />
                     </h3>
-                </div>
+                </div> */}
 
             </Carousel>
             <div className='gameList'>
@@ -65,11 +67,36 @@ function Content() {
                 {
                     data?.map((item) => {
                         return (
-                            <div className='game-container'>
-                                <div key={item?.id}>{item?.title}</div>
-                                {/* <div key={item?.id}>{item?.platform}</div> */}
-                                <img src={item?.thumbnail} />
-                            </div>
+                            <Card
+                                hoverable
+                                style={{
+                                    width: 320,
+                                    height: 390,
+                                    paddingBottom: 10,
+                                    marginBottom: 20
+                                }}
+                                cover={
+                                    <img alt={item?.thumbnail} src={item?.thumbnail} />
+                                }
+                                actions={[
+                                    <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
+                                ]}
+                            >
+                                <Meta
+                                    title={item?.title}
+                                />
+                                <div className="card-description"
+                                    style={{
+                                        height: '70px',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 3,
+                                        WebkitBoxOrient: 'vertical'
+                                    }}>
+                                    {item?.short_description}
+                                </div>
+                            </Card>
                         )
                     })
                 }
