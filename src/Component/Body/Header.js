@@ -3,12 +3,16 @@ import { useHistory } from 'react-router-dom';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import { HomeOutlined, UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { react, useState } from 'react';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 
 
 
+function Nav({ user }) {
+  const history = useHistory();
+  const [current, setCurrent] = useState('mail');
 
-function Nav() {
   const items = [
     {
       label: 'HOME',
@@ -20,6 +24,12 @@ function Nav() {
       key: 'game',
       icon: <LaptopOutlined />,
     },
+    !user ?
+      {
+        label: 'Signup',
+        key: 'signup',
+        icon: <LaptopOutlined />,
+      } : '',
     {
       label: 'ACCOUNT',
       key: 'account',
@@ -41,21 +51,32 @@ function Nav() {
               label: 'VIP activation',
               key: 'vip-act',
             },
-            {
-              label: 'Log out',
-              key: 'logout',
-            },
+            user ?
+              {
+                label: 'Log out',
+                key: 'logout',
+              } : '',
           ],
         },
       ],
     },
   ];
-  const history = useHistory();
-  const [current, setCurrent] = useState('mail');
+
   const onClick = (e) => {
     history.push(`${e.key}`)
-    console.log('click ', e);
+    console.log('click ', e.key);
     setCurrent(e.key);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+      localStorage.removeItem("user");
+      history.push("/")
+      console.log('success', 'Logout success !')
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <>

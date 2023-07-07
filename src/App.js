@@ -12,11 +12,12 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import Login from './Component/Login/Login';
 import Signup from './Component/Login/Signup';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {
 
+  const [user, setUser] = useState(null)
   const config = {
     apiKey: 'AIzaSyDafK_Fk0gXKC5zEgXdUGNpIT_s_aSexGs',
     authDomain: 'spck-login-b01d4.firebaseapp.com',
@@ -29,11 +30,11 @@ function App() {
       if (!userLogin) {
         // user logs out, handle something here
         console.log('User is not logged in');
-        // setUser(null);
+        setUser(null);
         return;
       }
       console.log('Logged in user: ', userLogin);
-      // setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL });
+      setUser({ ...user, userName: userLogin.displayName, avt: userLogin.photoURL });
       // notification("success", "Logged in successfully!")
       // const token = await userLogin.getIdToken();
       // console.log('Logged in user token: ', token);
@@ -45,14 +46,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header user={user} />
 
         {/* <Home/> */}
 
         <Switch>
           <Route path="/" exact component={() => <Content />} ></Route>
           <Route path="/info-account" exact component={() => <Login />} ></Route>
-          <Route path="/game" exact component={() => <Signup />} ></Route>
+          <Route path="/signup" exact component={() => <Signup user={user} />} ></Route>
         </Switch>
       </div>
     </Router>
