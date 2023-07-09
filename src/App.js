@@ -18,6 +18,7 @@ import Swal from 'sweetalert2'
 import About from './Component/About';
 import User from './Component/User/User';
 import Detail from './Component/Detail/Detail';
+import Checkpoint from './Component/Checxkpoint/Checkpoint';
 
 function App() {
 
