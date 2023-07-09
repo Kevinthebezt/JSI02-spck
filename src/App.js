@@ -17,6 +17,7 @@ import { Alert } from 'antd';
 import Swal from 'sweetalert2'
 import About from './Component/About';
 import User from './Component/User/User';
+import Detail from './Component/Detail/Detail';
 
 function App() {
 
@@ -76,6 +77,7 @@ function App() {
           <Route path="/signup" exact component={() => <Signup notification={notification} user={user} setReload={setReload} />} ></Route>
           <Route path="/about" exact component={() => <About notification={notification} user={user} />} ></Route>
           <Route path="/information-user" exact component={() => <User notification={notification} user={user} />} ></Route>
+          <Route path="/game/:id" exact component={(match) => <Detail notification={notification} match={match} />} ></Route>
         </Switch>
       </div>
     </Router>

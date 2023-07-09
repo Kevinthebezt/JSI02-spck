@@ -2,8 +2,12 @@ import '../../Css/Content.css'
 import rdr2 from '../../images/rdr2.jpg'
 import { Carousel, Card, FloatButton } from 'antd';
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
+
 
 function Content() {
+  const history = useHistory();
+
     const { Meta } = Card;
 
     const contentStyle = {
@@ -78,7 +82,8 @@ function Content() {
                                     width: 320,
                                     height: 390,
                                     paddingBottom: 10,
-                                    marginBottom: 20
+                                    marginBottom: 20,
+                                    color: "#9e9ea3",
                                 }}
                                 cover={
                                     <img alt={item?.thumbnail} src={item?.thumbnail} />
@@ -87,25 +92,27 @@ function Content() {
                                     <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
                                 ]}
                             >
-                                <Meta
-                                    title={item?.title}
-                                />
-                                <div className="card-description"
-                                    style={{
-                                        height: '70px',
-                                        overflow: 'hidden',
-                                        textOverflow: 'ellipsis',
-                                        display: '-webkit-box',
-                                        WebkitLineClamp: 3,
-                                        WebkitBoxOrient: 'vertical'
-                                    }}>
-                                    {item?.short_description}
+                                <div onClick={() => history.push(`/game/${item?.id}`)}>
+                                    <Meta
+                                        title={item?.title}
+                                    />
+                                    <div className="card-description"
+                                        style={{
+                                            height: '70px',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            display: '-webkit-box',
+                                            WebkitLineClamp: 3,
+                                            WebkitBoxOrient: 'vertical'
+                                        }}>
+                                        {item?.short_description}
+                                    </div>
                                 </div>
                             </Card>
                         )
                     })
                 }
-
+                <p className='Footer'>Phát triển bởi © RevoltG</p>
             </div>
         </div>
     )
