@@ -109,9 +109,9 @@ function Nav({ user, notification }) {
 
   return (
     <Affix offsetTop={0}>
-
-      <div className="demo-logo" />
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+      <div>
+        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+      </div>
     </Affix>
 
   );
