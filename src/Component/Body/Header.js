@@ -108,7 +108,7 @@ function Nav({ user, notification }) {
     if (e.key === 'logout') {
       return;
     } else {
-      history.push(`${e.key}`)
+      history.push(`/${e.key}`)
       setCurrent(e.key);
     }
   };
