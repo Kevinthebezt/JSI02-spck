@@ -1,6 +1,6 @@
 import '../../Css/Header.css'
 import { useHistory } from 'react-router-dom';
-import { Affix, Avatar, Menu } from 'antd';
+import { Affix, Avatar, Menu, Button } from 'antd';
 import { HomeOutlined, UserOutlined, LaptopOutlined, LoginOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { react, useState } from 'react';
 import firebase from 'firebase/compat/app';
@@ -26,11 +26,13 @@ function Nav({ user, notification }) {
     }
   };
 
-  const confirmNotification = () => {
+  const confirmNotification = (e) => {
+    e.preventDefault()
     return Swal.fire({
       title: 'Are you sure?',
       text: "Are you sure you want to sign out?",
       icon: 'warning',
+      width: '32em',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -94,6 +96,7 @@ function Nav({ user, notification }) {
               user ?
                 {
                   label: <div onClick={confirmNotification}>Log out</div>,
+                  key: 'logout'
                 } : '',
             ],
           },
@@ -102,8 +105,12 @@ function Nav({ user, notification }) {
   ];
 
   const onClick = (e) => {
-    history.push(`${e.key}`)
-    setCurrent(e.key);
+    if (e.key === 'logout') {
+      return;
+    } else {
+      history.push(`${e.key}`)
+      setCurrent(e.key);
+    }
   };
 
 

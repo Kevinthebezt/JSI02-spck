@@ -55,6 +55,7 @@ function App() {
     return Swal.fire({
       position: 'top',
       icon: icon,
+      width: '20em',
       title: title,
       showConfirmButton: false,
       timer: 1500
