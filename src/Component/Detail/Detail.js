@@ -1,7 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
+import { StarFilled, TagFilled, InfoCircleFilled, CalendarFilled, PlaySquareOutlined } from '@ant-design/icons';
 import '../../Css/Detail.css'
-
+import { Button, Space } from 'antd';
+import { Col, Row } from 'antd';
 import { Carousel } from 'antd';
 
 
@@ -53,15 +55,94 @@ function Detail({ match }) {
     }
     console.log(data);
     return (
-        <div style={{ width: '100%', height: 'auto' }}>
-            <Carousel autoplay>
+        <div style={{ width: '100%', height: 'auto', margin:'0 50px' }}>
+            <Row>
+                <Col span={12}><Carousel autoplay>
+                    {
+                        data?.screenshots?.map((item) => {
+                            console.log("===================", data);
+                            return (
+                                <div>
+                                    <img src={item?.image} style={{ width: '100%', height: 'auto' }} />
+                                </div>
+
+
+                            )
+                        })
+                    }
+                </Carousel></Col>
+                <Col span={12}>
+                    {/* <div className='gameList'> */}
+                    <Row>
+                        <Col span={24}><p>{data.short_description}</p></Col>
+                    </Row>
+                    <Row>
+                        <Col span={12}>
+                            <Row>
+                                <Col span={18} push={6}>
+                                    <p style={{ color: 'green' }}>RELEASE DATE: </p>
+                                    <p>{data.release_date}</p>
+                                </Col>
+                                <Col span={6} pull={18}>
+                                    <CalendarFilled style={{ color: 'green' }} />
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col span={12}>
+                            <Row>
+                                <Col span={18} push={6}>
+                                    <p style={{ color: 'purple' }}>PLATFORM: </p>
+                                    <p>{data.platform}</p>
+                                </Col>
+                                <Col span={6} pull={18}>
+                                    <InfoCircleFilled style={{ color: 'purple' }} />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={12}>
+                            <Row>
+                                <Col span={18} push={6}>
+                                    <p style={{ color: 'blue' }}>GENRE:</p>
+                                    <p>{data.genre}</p>
+                                </Col>
+                                <Col span={6} pull={18}>
+                                    <TagFilled style={{ color: 'blue' }} />
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col span={12}>
+                            <Row>
+                                <Col span={18} push={6}>
+                                    <p style={{ color: 'yellow' }}>PUBLISHER:</p>
+                                    <p>{data.publisher}</p>
+                                </Col>
+                                <Col span={6} pull={18}>
+                                    <StarFilled style={{ color: 'yellow' }} />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Button className='btn' type="primary" block>
+                            <PlaySquareOutlined /> PLAY NOW
+                        </Button>
+                    </Row>
+
+                    {/* </div> */}
+                </Col>
+            </Row>
+            {/* <Carousel autoplay>
                 {
                     data?.screenshots?.map((item) => {
-                        console.log("===================",data);
+                        console.log("===================", data);
                         return (
-                                <div>
-                                        <img  src={item?.image} style={{ width: '100%', height: 'auto' }} />
-                                </div>
+                            <div>
+                                <img src={item?.image} style={{ width: '100%', height: 'auto' }} />
+                            </div>
 
 
                         )
@@ -69,10 +150,38 @@ function Detail({ match }) {
                 }
             </Carousel>
             <div className='gameList'>
-
-                <p>{data.description}</p>
-                <p className='Footer'>Phát triển bởi © RevoltG</p>
-            </div>
+                <div>
+                    <p>{data.description}</p>
+                </div>
+                <div>
+                    <div>
+                        <CalendarFilled />
+                        <p style={{ color: 'green' }}>RELEASE DATE:</p>
+                        <p>{data.release_date}</p>
+                    </div>
+                    <div>
+                        <InfoCircleFilled />
+                        <p style={{ color: 'purple' }}>PLATFORM: </p>
+                        <p>{data.platform}</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <TagFilled />
+                        <p style={{ color: 'blue' }}>GENRE:</p>
+                        <p>{data.genre}</p>
+                    </div>
+                    <div>
+                        <StarFilled />
+                        <p style={{ color: 'yellow' }}>PUBLISHER:</p>
+                        <p>{data.publisher}</p>
+                    </div>
+                </div>
+                <Button className='btn' type="primary" block>
+                    <PlaySquareOutlined /> PLAY NOW
+                </Button>
+            </div> */}
+            <p className='Footer'>Phát triển bởi © RevoltG</p>
         </div>
     )
 

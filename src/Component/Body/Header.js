@@ -1,7 +1,7 @@
 import '../../Css/Header.css'
 import { useHistory } from 'react-router-dom';
 import { Affix, Avatar, Menu, Button } from 'antd';
-import { HomeOutlined, UserOutlined, LaptopOutlined, LoginOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, ShoppingCartOutlined, LoginOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { react, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -51,9 +51,9 @@ function Nav({ user, notification }) {
       icon: <HomeOutlined />,
     },
     {
-      label: 'GAMES',
-      key: 'game',
-      icon: <LaptopOutlined />,
+      label: 'CART',
+      key: 'cart',
+      icon: <ShoppingCartOutlined />,
     },
     {
       label: 'About',

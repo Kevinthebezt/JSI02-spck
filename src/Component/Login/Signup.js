@@ -5,10 +5,21 @@ import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { Col, Row } from 'antd';
 
 
 
 const Signup = ({ notification, setReload }) => {
+
+    const handleGoogleLogin = async () => {
+        try {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          await firebase.auth().signInWithPopup(provider);
+          history.push("/")
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
 
     const history = new useHistory();
 
@@ -127,9 +138,20 @@ const Signup = ({ notification, setReload }) => {
                 <Button type="primary" htmlType="submit">
                     Sign up
                 </Button>
-                <Button type="primary" icon={<ArrowLeftOutlined />} style={{ marginTop: 10 }} onClick={() => history.push("/login")} ghost>
+                {/* <Button type="primary" icon={<ArrowLeftOutlined />} style={{ marginTop: 10 }} onClick={() => history.push("/login")} ghost>
                     Back
-                </Button>
+                </Button> */}
+                <Row>
+
+                    <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
+                        Google
+                    </a></Col>
+                    <Col span={8}><p style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
+                    <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/login")}>
+                        Login
+                    </a></Col>
+
+                </Row>
             </Form.Item>
         </Form>
     )

@@ -7,11 +7,22 @@ import { useHistory } from 'react-router-dom';
 import '../../Css/Login.css'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { Col, Row } from 'antd';
 
 import { Button, Checkbox, Form, Input } from 'antd';
 
 
 const Login = ({ notification }) => {
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await firebase.auth().signInWithPopup(provider);
+      history.push("/")
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const history = new useHistory();
   const onFinish = async (values) => {
     // console.log('Saved:', values);
@@ -92,9 +103,22 @@ const Login = ({ notification }) => {
         <Button type="primary" htmlType="submit">
           Login
         </Button>
-        <Button type="primary" style={{ marginTop: 10 }} onClick={() => history.push("/signup")} ghost>
+        {/* <Button type="primary" style={{ marginTop: 10 }} onClick={() => history.push("/signup")} ghost>
           Sign up
-        </Button>
+        </Button> */}
+
+        <Row>
+
+          <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
+            Google
+          </a></Col>
+          <Col span={8}><p style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
+          <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/signup")}>
+            Sign up
+          </a></Col>
+
+        </Row>
+
       </Form.Item>
     </Form>
   )

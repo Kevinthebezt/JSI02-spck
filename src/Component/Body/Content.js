@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 function Content() {
     const history = useHistory();
     const [offset, setOffset] = useState(0)
-    const [limit, setLimit] = useState(10)
+    const [limit, setLimit] = useState(12)
     const { Meta } = Card;
     const { Search } = Input;
     const [data, setData] = useState()
@@ -93,27 +93,27 @@ function Content() {
                     {
                         data?.slice(offset, offset + limit).map((item) => {
                             return (
-                                <Card
+                                <Card onClick={() => history.push(`/game/${item?.id}`)}
                                     hoverable
                                     style={{
                                         width: 320,
-                                        height: 390,
+                                        height: 289,
                                         paddingBottom: 10,
                                         marginBottom: 20,
                                         color: "#9e9ea3",
                                     }}
-                                    // cover={
-                                    //     <img alt={item?.thumbnail} src={item?.thumbnail} />
-                                    // }
+                                    cover={
+                                        <img alt={item?.thumbnail} src={item?.thumbnail} />
+                                    }
                                     actions={[
                                         <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
                                     ]}
                                 >
-                                    <div onClick={() => history.push(`/game/${item?.id}`)}>
+                                    <div >
                                         <Meta
                                             title={item?.title}
                                         />
-                                        <div className="card-description"
+                                        {/* <div className="card-description"
                                             style={{
                                                 height: '70px',
                                                 overflow: 'hidden',
@@ -123,7 +123,7 @@ function Content() {
                                                 WebkitBoxOrient: 'vertical'
                                             }}>
                                             {item?.short_description}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </Card>
                             )

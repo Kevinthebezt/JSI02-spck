@@ -17,3 +17,7 @@
 .ant-btn {
     width: 277px;
 }
+
+label {
+    color: #aab3b9 !important;
+}
