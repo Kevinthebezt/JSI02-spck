@@ -71,20 +71,21 @@ function Detail({ match }) {
                         })
                     }
                 </Carousel></Col>
+                {/* <div className='gameList'  style={{backgroundColor: '#252730'}}> */}
                 <Col span={12}>
-                    {/* <div className='gameList'> */}
+                    
                     <Row>
-                        <Col span={24}><p>{data.short_description}</p></Col>
+                        <Col span={24}><p style={{ color: 'grey', fontSize: '20px' }}>{data.short_description}</p></Col>
                     </Row>
                     <Row>
                         <Col span={12}>
                             <Row>
                                 <Col span={18} push={6}>
                                     <p style={{ color: 'green' }}>RELEASE DATE: </p>
-                                    <p>{data.release_date}</p>
+                                    <p style={{ color: 'grey', fontSize: '15px' }}>{data.release_date}</p>
                                 </Col>
                                 <Col span={6} pull={18}>
-                                    <CalendarFilled style={{ color: 'green' }} />
+                                    <CalendarFilled style={{ color: 'green', fontSize: '50px' }} />
                                 </Col>
                             </Row>
                         </Col>
@@ -93,10 +94,10 @@ function Detail({ match }) {
                             <Row>
                                 <Col span={18} push={6}>
                                     <p style={{ color: 'purple' }}>PLATFORM: </p>
-                                    <p>{data.platform}</p>
+                                    <p style={{ color: 'grey', fontSize: '15px' }}>{data.platform}</p>
                                 </Col>
                                 <Col span={6} pull={18}>
-                                    <InfoCircleFilled style={{ color: 'purple' }} />
+                                    <InfoCircleFilled style={{ color: 'purple', fontSize: '50px' }} />
                                 </Col>
                             </Row>
                         </Col>
@@ -106,10 +107,10 @@ function Detail({ match }) {
                             <Row>
                                 <Col span={18} push={6}>
                                     <p style={{ color: 'blue' }}>GENRE:</p>
-                                    <p>{data.genre}</p>
+                                    <p style={{ color: 'grey', fontSize: '15px' }}>{data.genre}</p>
                                 </Col>
                                 <Col span={6} pull={18}>
-                                    <TagFilled style={{ color: 'blue' }} />
+                                    <TagFilled style={{ color: 'blue', fontSize: '50px' }} />
                                 </Col>
                             </Row>
                         </Col>
@@ -118,10 +119,10 @@ function Detail({ match }) {
                             <Row>
                                 <Col span={18} push={6}>
                                     <p style={{ color: 'yellow' }}>PUBLISHER:</p>
-                                    <p>{data.publisher}</p>
+                                    <p style={{ color: 'grey', fontSize: '15px' }}>{data.publisher}</p>
                                 </Col>
                                 <Col span={6} pull={18}>
-                                    <StarFilled style={{ color: 'yellow' }} />
+                                    <StarFilled style={{ color: 'yellow', fontSize: '50px' }} />
                                 </Col>
                             </Row>
                         </Col>
@@ -131,10 +132,10 @@ function Detail({ match }) {
                             <PlaySquareOutlined /> PLAY NOW
                         </Button>
                     </Row>
-
-                    {/* </div> */}
                 </Col>
+                {/* </div> */}
             </Row>
+            
             {/* <Carousel autoplay>
                 {
                     data?.screenshots?.map((item) => {
