@@ -3,9 +3,12 @@ import rdr2 from '../../images/rdr2.jpg'
 import { Carousel, Card, FloatButton, Pagination, Input } from 'antd';
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { Button, Space } from 'antd';
+import { PlaySquareOutlined } from '@ant-design/icons';
 
 
-function Content() {
+
+function Content({ user, notification }) {
     const history = useHistory();
     const [offset, setOffset] = useState(0)
     const [limit, setLimit] = useState(12)
@@ -20,11 +23,44 @@ function Content() {
         textAlign: 'center',
         background: '#364d79',
     };
-    const imgs = "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg"
-    const img = "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/03/3-32.jpg"
-    const img2 = "https://bloghomestay.vn/wp-content/uploads/2023/01/999-anh-game-3d-hinh-game-online-dep-nhat-danh-cho-game-thu_22.jpg"
-    const img3 = "https://bloghomestay.vn/wp-content/uploads/2023/01/999-anh-game-3d-hinh-game-online-dep-nhat-danh-cho-game-thu_5.jpg"
-    const img4 = "https://bloghomestay.vn/wp-content/uploads/2023/01/999-anh-game-3d-hinh-game-online-dep-nhat-danh-cho-game-thu_8.jpg"
+
+    const addToCart = (item) => {
+        const inCart = localStorage.getItem(`carts${user?.uid}`);
+        console.log(`carts${user?.uid}`);
+        const cart = {
+            ...item,
+            userId: user?.uid
+        };
+        console.log(cart);
+
+        if (user?.uid) {
+            if (inCart){
+                let isCart = JSON.parse(inCart);
+                let find = false;
+                console.log(isCart);
+                isCart = isCart.map(element =>{
+                    if (element.id === item.id){
+                        find = true;
+                        notification('warning', 'Already in cart')
+                        return {...element};
+                    } else {
+                        return element;
+                    }
+                })
+                if(!find){
+                    isCart.push(cart);
+                }
+                localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
+                return !find ? notification('success', 'Added successfully'):''
+            } else {
+                localStorage.setItem(`carts${user?.uid}`,JSON.stringify([cart]));
+                return notification('success', 'Added successfully');
+            }
+        } else {
+            return notification('error', 'Please login to continue')
+        }
+    }
+
     useEffect(() => {
         request()
     }, [])
@@ -93,7 +129,7 @@ function Content() {
                     {
                         data?.slice(offset, offset + limit).map((item) => {
                             return (
-                                <Card onClick={() => history.push(`/game/${item?.id}`)}
+                                <Card
                                     hoverable
                                     style={{
                                         width: 320,
@@ -103,14 +139,15 @@ function Content() {
                                         color: "#9e9ea3",
                                     }}
                                     cover={
-                                        <img alt={item?.thumbnail} src={item?.thumbnail} />
+                                        <img alt={item?.thumbnail} src={item?.thumbnail} onClick={() => history.push(`/game/${item?.id}`)} />
                                     }
                                     actions={[
                                         <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
+                                        <Button style={{backgroundColor: 'transparent', width:'auto'}} onClick={() => addToCart(item)} >Add to cart</Button>
                                     ]}
                                 >
                                     <div >
-                                        <Meta
+                                        <Meta onClick={() => history.push(`/game/${item?.id}`)}
                                             title={item?.title}
                                         />
                                         {/* <div className="card-description"

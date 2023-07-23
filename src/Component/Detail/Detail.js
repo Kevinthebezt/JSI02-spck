@@ -8,6 +8,10 @@ import { Carousel } from 'antd';
 
 
 function Detail({ match }) {
+    const [screenHeight, setScreenHeight] = useState();
+
+    
+
     // const contentStyle = {
     //     height: '160px',
     //     color: '#fff',
@@ -54,10 +58,25 @@ function Detail({ match }) {
         }
     }
     console.log(data);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenHeight(window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener when component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <div style={{ width: '100%', height: 'auto', margin:'0 50px' }}>
+        <div style={{ width: '100%', height: screenHeight, margin: '0' }}>
             <Row>
-                <Col span={12}><Carousel autoplay>
+                <Col span={12}>
+                <Carousel autoplay>
                     {
                         data?.screenshots?.map((item) => {
                             console.log("===================", data);
@@ -71,9 +90,8 @@ function Detail({ match }) {
                         })
                     }
                 </Carousel></Col>
-                {/* <div className='gameList'  style={{backgroundColor: '#252730'}}> */}
                 <Col span={12}>
-                    
+
                     <Row>
                         <Col span={24}><p style={{ color: 'grey', fontSize: '20px' }}>{data.short_description}</p></Col>
                     </Row>
@@ -135,7 +153,12 @@ function Detail({ match }) {
                 </Col>
                 {/* </div> */}
             </Row>
-            
+            <Row style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', color: 'grey'}}>
+                <h2>Description</h2>
+                <Col span={16} >
+                    <p  style={{ fontSize:'17px' }}>{data.description}</p>
+                </Col>
+            </Row>
             {/* <Carousel autoplay>
                 {
                     data?.screenshots?.map((item) => {

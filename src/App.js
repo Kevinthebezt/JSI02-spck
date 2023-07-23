@@ -61,7 +61,6 @@ function App() {
       showConfirmButton: false,
       timer: 1500
     })
-
   }
 
 
@@ -74,7 +73,7 @@ function App() {
         {/* <Home/> */}
 
         <Switch>
-          <Route path="/" exact component={() => <Content />} ></Route>
+          <Route path="/" exact component={() => <Content user={user} notification={notification}/>} ></Route>
           {/* <Route path="/info-account" exact component={() => <Login />} ></Route> */}
           <Route path="/login" exact component={() => <Login notification={notification} />} ></Route>
           <Route path="/signup" exact component={() => <Signup notification={notification} user={user} setReload={setReload} />} ></Route>
