@@ -56,8 +56,8 @@ function Nav({ user, notification }) {
       icon: <ShoppingCartOutlined />,
     },
     {
-      label: 'About',
-      key: 'about',
+      label: 'Mobile',
+      key: 'mobile',
       icon: <InfoCircleOutlined />,
     },
     !user ?

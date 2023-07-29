@@ -77,7 +77,7 @@ function App() {
           {/* <Route path="/info-account" exact component={() => <Login />} ></Route> */}
           <Route path="/login" exact component={() => <Login notification={notification} />} ></Route>
           <Route path="/signup" exact component={() => <Signup notification={notification} user={user} setReload={setReload} />} ></Route>
-          <Route path="/about" exact component={() => <About notification={notification} user={user} />} ></Route>
+          <Route path="/mobile" exact component={() => <About notification={notification} user={user} />} ></Route>
           <Route path="/cart" exact component={() => <Cart notification={notification} user={user} />} ></Route>
           <Route path="/information-user" exact component={() => <User notification={notification} user={user} />} ></Route>
           <Route path="/game/:id" exact component={(match) => <Detail notification={notification} match={match} />} ></Route>

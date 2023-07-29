@@ -71,7 +71,7 @@ const Login = ({ notification }) => {
       </Form.Item>
 
       <Form.Item
-        label="Passowrd"
+        label="Password"
         name="password"
         rules={[
           {
