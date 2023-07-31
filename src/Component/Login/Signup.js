@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import React from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import '../../Css/Login.css'
@@ -13,13 +14,13 @@ const Signup = ({ notification, setReload }) => {
 
     const handleGoogleLogin = async () => {
         try {
-          const provider = new firebase.auth.GoogleAuthProvider();
-          await firebase.auth().signInWithPopup(provider);
-          history.push("/")
+            const provider = new firebase.auth.GoogleAuthProvider();
+            await firebase.auth().signInWithPopup(provider);
+            history.push("/")
         } catch (error) {
-          console.log(error.message);
+            console.log(error.message);
         }
-      };
+    };
 
     const history = new useHistory();
 
@@ -45,80 +46,97 @@ const Signup = ({ notification, setReload }) => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+
+        const [screenHeight, setScreenHeight] = useState();
+
+        useEffect(() => {
+            const handleResize = () => {
+                setScreenHeight(window.innerHeight);
+            };
+
+            window.addEventListener('resize', handleResize);
+
+            // Clean up the event listener when component unmounts
+            return () => {
+                window.removeEventListener('resize', handleResize);
+            };
+        }, []);
+
     return (
-        <Form
-            name="basic"
-            labelCol={{
-                span: 8,
-            }}
-            wrapperCol={{
-                span: 16,
-            }}
-            style={{
-                maxWidth: 550,
-            }}
-            initialValues={{
-                remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-        >
-            <Form.Item
-                label="Username"
-                name="username"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your username!',
-                    },
-                ]}
+        <div style={{height: screenHeight}}>
+            <Form
+                name="basic"
+                labelCol={{
+                    span: 8,
+                }}
+                wrapperCol={{
+                    span: 16,
+                }}
+                style={{
+                    maxWidth: 550,
+                }}
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
             >
-                <Input />
-            </Form.Item>
+                <Form.Item
+                    label="Username"
+                    name="username"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your username!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
 
-            <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your password!',
-                    },
-                ]}
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
+                    ]}
 
-            >
+                >
 
-                <Input.Password />
-            </Form.Item>
+                    <Input.Password />
+                </Form.Item>
 
-            <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your email!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your email!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
 
-            <Form.Item
-                label="Phone number"
-                name="sdt"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your phone number!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+                <Form.Item
+                    label="Phone number"
+                    name="sdt"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your phone number!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
 
-            {/* <Form.Item
+                {/* <Form.Item
       name="remember"
       valuePropName="checked"
       wrapperCol={{
@@ -129,31 +147,32 @@ const Signup = ({ notification, setReload }) => {
       <Checkbox>Auto log in</Checkbox>
     </Form.Item> */}
 
-            <Form.Item
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
-                <Button type="primary" htmlType="submit">
-                    Sign up
-                </Button>
-                {/* <Button type="primary" icon={<ArrowLeftOutlined />} style={{ marginTop: 10 }} onClick={() => history.push("/login")} ghost>
+                <Form.Item
+                    wrapperCol={{
+                        offset: 8,
+                        span: 16,
+                    }}
+                >
+                    <Button type="primary" htmlType="submit">
+                        Sign up
+                    </Button>
+                    {/* <Button type="primary" icon={<ArrowLeftOutlined />} style={{ marginTop: 10 }} onClick={() => history.push("/login")} ghost>
                     Back
                 </Button> */}
-                <Row>
+                    <Row>
 
-                    <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
-                        Google
-                    </a></Col>
-                    <Col span={8}><p style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
-                    <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/login")}>
-                        Login
-                    </a></Col>
+                        <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
+                            Google
+                        </a></Col>
+                        <Col span={8}><p style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
+                        <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/login")}>
+                            Login
+                        </a></Col>
 
-                </Row>
-            </Form.Item>
-        </Form>
+                    </Row>
+                </Form.Item>
+            </Form>
+        </div>
     )
 
 }

@@ -8,10 +8,6 @@ import { Carousel } from 'antd';
 
 
 function Detail({ match }) {
-    const [screenHeight, setScreenHeight] = useState();
-
-    
-
     // const contentStyle = {
     //     height: '160px',
     //     color: '#fff',
@@ -58,6 +54,8 @@ function Detail({ match }) {
         }
     }
     console.log(data);
+
+    const [screenHeight, setScreenHeight] = useState();
     
     useEffect(() => {
         const handleResize = () => {

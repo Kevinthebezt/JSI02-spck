@@ -11,6 +11,21 @@ function Cart({ user }) {
     const [dataCart, setDataCart] = useState([])
     const { Meta } = Card;
 
+    const [screenHeight, setScreenHeight] = useState();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenHeight(window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener when component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     useEffect(() => {
         const inCart = localStorage.getItem(`carts${user?.uid}`);
         console.log("🚀 ~ file: Cart.js:17 ~ useEffect ~ inCart:", inCart)
@@ -20,7 +35,7 @@ function Cart({ user }) {
     })
 
     return (
-        <div className='gameList'>
+        <div className='gameList' style={{height: screenHeight }}>
             {
                 dataCart?.length > 0 ? dataCart?.map((item) => {
                     return (
