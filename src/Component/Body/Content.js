@@ -1,3 +1,4 @@
+import React from 'react';
 import '../../Css/Content.css'
 import rdr2 from '../../images/rdr2.jpg'
 import { Carousel, Card, FloatButton, Pagination, Input } from 'antd';
@@ -5,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { Button, Space } from 'antd';
 import { PlaySquareOutlined } from '@ant-design/icons';
+import { UserOutlined, DesktopOutlined, ClockCircleOutlined, EyeOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { Col, Row, Statistic } from 'antd';
 
 
 
@@ -34,26 +37,26 @@ function Content({ user, notification }) {
         console.log(cart);
 
         if (user?.uid) {
-            if (inCart){
+            if (inCart) {
                 let isCart = JSON.parse(inCart);
                 let find = false;
                 console.log(isCart);
-                isCart = isCart.map(element =>{
-                    if (element.id === item.id){
+                isCart = isCart.map(element => {
+                    if (element.id === item.id) {
                         find = true;
                         notification('warning', 'Already in cart')
-                        return {...element};
+                        return { ...element };
                     } else {
                         return element;
                     }
                 })
-                if(!find){
+                if (!find) {
                     isCart.push(cart);
                 }
                 localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
-                return !find ? notification('success', 'Added successfully'):''
+                return !find ? notification('success', 'Added successfully') : ''
             } else {
-                localStorage.setItem(`carts${user?.uid}`,JSON.stringify([cart]));
+                localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
                 return notification('success', 'Added successfully');
             }
         } else {
@@ -125,6 +128,27 @@ function Content({ user, notification }) {
                         }}
                     />
                 </div>
+
+                <div className='statistic'>
+                    <Row gutter={16}>
+                        <Col span={5}>
+                            <Statistic title="Member" value={532375} prefix={<UserOutlined style={{padding: '5px', backgroundColor:'#191b20', borderRadius:'10px'}} />} />
+                        </Col>
+                        <Col span={5}>
+                            <Statistic title="Games" value={1496} prefix={<DesktopOutlined style={{padding: '5px', backgroundColor:'#191b20', borderRadius:'10px'}}/>} />
+                        </Col>
+                        <Col span={4}>
+                            <Statistic title="Play time" value={10000000} prefix={<ClockCircleOutlined style={{padding: '5px', backgroundColor:'#191b20', borderRadius:'10px'}}/>} />
+                        </Col>
+                        <Col span={5}>
+                            <Statistic title="Online" value={3024} prefix={<EyeOutlined style={{padding: '5px', backgroundColor:'#191b20', borderRadius:'10px'}}/>} />
+                        </Col>
+                        <Col span={5}>
+                            <Statistic title="Playing" value={1169} prefix={<CaretRightOutlined style={{padding: '5px', backgroundColor:'#191b20', borderRadius:'10px'}}/>} />
+                        </Col>
+                    </Row>
+                </div>
+
                 <div className='gameList'>
                     {
                         data?.slice(offset, offset + limit).map((item) => {
@@ -143,7 +167,7 @@ function Content({ user, notification }) {
                                     }
                                     actions={[
                                         <span style={{ fontWeight: '500', color: 'black' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
-                                        <Button style={{backgroundColor: 'transparent', width:'auto'}} onClick={() => addToCart(item)} >Add to cart</Button>
+                                        <Button style={{ backgroundColor: 'transparent', width: 'auto' }} onClick={() => addToCart(item)} >Add to cart</Button>
                                     ]}
                                 >
                                     <div >

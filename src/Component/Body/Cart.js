@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { Button, Space } from 'antd';
 import { PlaySquareOutlined } from '@ant-design/icons';
+import { Empty } from 'antd';
 
 
 function Cart({ user }) {
@@ -73,7 +74,7 @@ function Cart({ user }) {
                             </div>
                         </Card>
                     )
-                }) : 'No data'
+                }) : <Empty />
             }
         </div>
     );

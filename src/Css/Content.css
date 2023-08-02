@@ -1,6 +1,6 @@
-.slick-dots {
+/* .slick-dots {
     width: 1210px;
-}
+} */
 
 .gameList {
     padding: 50px;
@@ -40,3 +40,30 @@
 .Footer {
     color: rgb(158, 158, 163);
   }
+
+.ant-empty-description {
+    color: gray !important;
+}
+
+.statistic {
+    width: 70%;
+    color: gray !important;
+    background-color: #252730;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.ant-statistic-content {
+    color: #b1b1b5 !important;
+}
+
+.ant-statistic-title {
+    font-size: 20px !important;
+    color: #7e8188 !important;
+}
+
+/* .anticon {
+    padding: 5px;
+    background-color: #191b20;
+    border-radius: 10px;
+} */
