@@ -1,6 +1,6 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, QRCode } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 const About = () => {
     const [size, setSize] = useState(260);
     const increase = () => {
@@ -22,8 +22,23 @@ const About = () => {
         });
     };
 
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenHeight(window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener when component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <div style={{ width: '50%', display: 'flex', flexDirection: 'column', padding: 50 }}>
+        <div style={{ width: '50%', height:screenHeight, display: 'flex', flexDirection: 'column', padding: 50, margin:'auto', alignItems:'center' }}>
             <Button.Group
                 style={{
                     marginBottom: 16,

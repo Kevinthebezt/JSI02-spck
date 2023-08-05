@@ -87,11 +87,11 @@ function Nav({ user, notification }) {
               },
               {
                 label: 'Add money',
-                key: 'add-money',
+                key: 'coming-soon',
               },
               {
                 label: 'VIP activation',
-                key: 'vip-act',
+                key: 'coming-soon',
               },
               user ?
                 {

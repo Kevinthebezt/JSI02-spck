@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Empty } from 'antd';
+import { NotificationOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 import { useEffect, useState } from 'react'
 
 
-const User = ({ user }) => {
-    console.log(user)
-
+const CS = () => {
     const [screenHeight, setScreenHeight] = useState();
     
     useEffect(() => {
@@ -23,19 +23,10 @@ const User = ({ user }) => {
 
     return (
         <div style={{ color: 'gray', paddingTop:'40px', paddingBottom:'40px', height:screenHeight }}>
-            <Row>
-                <Col span={18} push={6} style={{textAlign:'left'}}>
-                    <h1>{user?.userName}</h1>
-                    <p>UID: {user?.uid}</p>
-                    <h3>Email: {user?.email}</h3>
-
-                </Col>
-                <Col span={6} pull={18}>
-                <img style={{width:'180px' }} src={user?.avt} />
-                </Col>
-            </Row>
+            <NotificationOutlined style={{fontSize:'90px'}}/>
+            <h1>Coming Soon</h1>
         </div>
     )
 }
 
-export default User
+export default CS

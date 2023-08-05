@@ -20,6 +20,7 @@ import User from './Component/User/User';
 import Detail from './Component/Detail/Detail';
 import Checkpoint from './Component/Checxkpoint/Checkpoint';
 import Cart from './Component/Body/Cart';
+import CS from './Component/Body/C-S';
 
 function App() {
 
@@ -81,6 +82,7 @@ function App() {
           <Route path="/cart" exact component={() => <Cart notification={notification} user={user} />} ></Route>
           <Route path="/information-user" exact component={() => <User notification={notification} user={user} />} ></Route>
           <Route path="/game/:id" exact component={(match) => <Detail notification={notification} match={match} />} ></Route>
+          <Route path="/coming-soon" exact component={() => <CS notification={notification} user={user} />} ></Route>
         </Switch>
       </div>
     </Router>
