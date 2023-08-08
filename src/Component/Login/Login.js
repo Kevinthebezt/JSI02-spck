@@ -15,7 +15,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 
 const Login = ({ notification }) => {
 
-  const [screenHeight, setScreenHeight] = useState();
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +34,7 @@ const Login = ({ notification }) => {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       await firebase.auth().signInWithPopup(provider);
+      notification('success', 'Login success !')
       history.push("/")
     } catch (error) {
       console.log(error.message);
@@ -55,7 +56,7 @@ const Login = ({ notification }) => {
     console.log('Failed:', errorInfo);
   };
   return (
-    <div style={{height: screenHeight}}>
+    <div style={{height: screenHeight - 70}}>
 
       <Form
         name="basic"

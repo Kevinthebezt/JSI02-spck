@@ -22,7 +22,7 @@ const About = () => {
         });
     };
 
-    const [screenHeight, setScreenHeight] = useState();
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
     
     useEffect(() => {
         const handleResize = () => {
@@ -38,10 +38,11 @@ const About = () => {
     }, []);
 
     return (
-        <div style={{ width: '50%', height:screenHeight, display: 'flex', flexDirection: 'column', padding: 50, margin:'auto', alignItems:'center' }}>
+        <div style={{ width: '50%', height:screenHeight - 146, display: 'flex', flexDirection: 'column', padding: 50, margin:'auto', alignItems:'center' }}>
             <Button.Group
                 style={{
                     marginBottom: 16,
+                    
                 }} >
                 <Button onClick={decline} disabled={size <= 48} icon={<MinusOutlined />}>
                     Smaller
@@ -50,10 +51,11 @@ const About = () => {
                     Larger
                 </Button>
             </Button.Group>
-            <QRCode
+            <QRCode 
                 errorLevel="H"
                 size={size}
                 iconSize={size / 4}
+                // value='http://localhost:3000'
                 value="https://free-game.vercel.app/"
             // icon="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
             />

@@ -7,7 +7,7 @@ import { Col, Row } from 'antd';
 import { Carousel } from 'antd';
 
 
-function Detail({ match }) {
+function Detail({ match, user, notification,addToCart }) {
     // const contentStyle = {
     //     height: '160px',
     //     color: '#fff',
@@ -55,7 +55,7 @@ function Detail({ match }) {
     }
     console.log(data);
 
-    const [screenHeight, setScreenHeight] = useState();
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
     
     useEffect(() => {
         const handleResize = () => {
@@ -71,7 +71,7 @@ function Detail({ match }) {
     }, []);
 
     return (
-        <div style={{ width: '100%', height: screenHeight, margin: '0' }}>
+        <div style={{ width: '100%', height: screenHeight + 140, margin: '0' }}>
             <Row>
                 <Col span={12}>
                 <Carousel autoplay>
@@ -144,7 +144,7 @@ function Detail({ match }) {
                         </Col>
                     </Row>
                     <Row>
-                        <Button className='btn' type="primary" block>
+                        <Button className='btn' type="primary" block onClick={() => addToCart(data)}>
                             <PlaySquareOutlined /> PLAY NOW
                         </Button>
                     </Row>

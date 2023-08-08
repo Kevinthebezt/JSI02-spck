@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 const User = ({ user }) => {
     console.log(user)
 
-    const [screenHeight, setScreenHeight] = useState();
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
     
     useEffect(() => {
         const handleResize = () => {
@@ -22,7 +22,7 @@ const User = ({ user }) => {
     }, []);
 
     return (
-        <div style={{ color: 'gray', paddingTop:'40px', paddingBottom:'40px', height:screenHeight }}>
+        <div style={{ color: 'gray', paddingTop:'40px', paddingBottom:'40px', height:screenHeight -126 }}>
             <Row>
                 <Col span={18} push={6} style={{textAlign:'left'}}>
                     <h1>{user?.userName}</h1>

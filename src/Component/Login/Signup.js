@@ -11,7 +11,9 @@ import { Col, Row } from 'antd';
 
 
 const Signup = ({ notification, setReload }) => {
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
+    
     const handleGoogleLogin = async () => {
         try {
             const provider = new firebase.auth.GoogleAuthProvider();
@@ -24,30 +26,47 @@ const Signup = ({ notification, setReload }) => {
 
     const history = new useHistory();
 
+
+   
+
+
+
+
+
     const onFinish = async (value) => {
         console.log('Saved:', value);
-        try {
-            const result = await firebase.auth().createUserWithEmailAndPassword(value?.email, value?.password);
-
-            // Cập nhật thông tin người dùng với tên đăng nhập
-            await result.user.updateProfile({
-                displayName: value?.username,
-                phoneNumber: value?.phoneNumber
-                // photoURL
-            });
-
-            notification('success', 'Signed up successfully !')
-            history.push("/")
-            setReload(true)
-        } catch (error) {
-            console.log(error.message);
+        if (value?.password.length < 6) {
+            notification('error', 'Password must be atleast 6 characters!')
+            return false;
         }
+        else if (value?.confirmPassword !== value?.password) {
+            notification('error', 'Password does not match!')
+            return false;
+        } else {
+            try {
+                const result = await firebase.auth().createUserWithEmailAndPassword(value?.email, value?.password);
+    
+                // Cập nhật thông tin người dùng với tên đăng nhập
+                await result.user.updateProfile({
+                    displayName: value?.username,
+                    // photoURL
+                });
+    
+                notification('success', 'Signed up successfully!')
+                history.push("/")
+                setReload(true)
+            } catch (error) {
+                notification('error', error.message)
+                // console.log(error.message);
+            }
+        }
+
+        
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
-        const [screenHeight, setScreenHeight] = useState();
 
         useEffect(() => {
             const handleResize = () => {
@@ -63,7 +82,7 @@ const Signup = ({ notification, setReload }) => {
         }, []);
 
     return (
-        <div style={{height: screenHeight}}>
+        <div style={{height: screenHeight -70}}>
             <Form
                 name="basic"
                 labelCol={{
@@ -111,6 +130,21 @@ const Signup = ({ notification, setReload }) => {
                 </Form.Item>
 
                 <Form.Item
+                    label="Confirm password"
+                    name="confirmPassword"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your confirm password!',
+                        },
+                    ]}
+
+                >
+
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item
                     label="Email"
                     name="email"
                     rules={[
@@ -123,7 +157,7 @@ const Signup = ({ notification, setReload }) => {
                     <Input />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                     label="Phone number"
                     name="sdt"
                     rules={[
@@ -134,7 +168,7 @@ const Signup = ({ notification, setReload }) => {
                     ]}
                 >
                     <Input />
-                </Form.Item>
+                </Form.Item> */}
 
                 {/* <Form.Item
       name="remember"

@@ -8,11 +8,12 @@ import { Empty } from 'antd';
 
 
 function Cart({ user }) {
+    const history = useHistory();
 
     const [dataCart, setDataCart] = useState([])
     const { Meta } = Card;
 
-    const [screenHeight, setScreenHeight] = useState();
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
     useEffect(() => {
         const handleResize = () => {
@@ -36,17 +37,19 @@ function Cart({ user }) {
     })
 
     return (
-        <div className='gameList' style={{height: screenHeight }}>
+        <div className='gameList' style={{height: screenHeight - 146 }}>
             {
                 dataCart?.length > 0 ? dataCart?.map((item) => {
                     return (
                         <Card
                             hoverable
+                            onClick={() => history.push(`/game/${item?.id}`)}
                             style={{
                                 width: 320,
                                 height: 289,
                                 paddingBottom: 10,
                                 marginBottom: 20,
+                                marginRight: 20,
                                 color: "#9e9ea3",
                             }}
                             cover={

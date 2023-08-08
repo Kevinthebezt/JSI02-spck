@@ -24,6 +24,8 @@ import CS from './Component/Body/C-S';
 
 function App() {
 
+ 
+
   const [user, setUser] = useState({
     userName: '',
     email: '',
@@ -60,10 +62,45 @@ function App() {
       width: '20em',
       title: title,
       showConfirmButton: false,
-      timer: 1500
+      timer: 2500
     })
   }
+  const addToCart = (item) => {
+    const inCart = localStorage.getItem(`carts${user?.uid}`);
+    console.log(`carts${user?.uid}`);
+    const cart = {
+        ...item,
+        userId: user?.uid
+    };
+    console.log(cart);
 
+    if (user?.uid) {
+        if (inCart) {
+            let isCart = JSON.parse(inCart);
+            let find = false;
+            console.log(isCart);
+            isCart = isCart.map(element => {
+                if (element.id === item.id) {
+                    find = true;
+                    notification('warning', 'Already in cart')
+                    return { ...element };
+                } else {
+                    return element;
+                }
+            })
+            if (!find) {
+                isCart.push(cart);
+            }
+            localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
+            return !find ? notification('success', 'Added successfully') : ''
+        } else {
+            localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
+            return notification('success', 'Added successfully');
+        }
+    } else {
+        return notification('error', 'Please login to continue')
+    }
+}
 
 
   return (
@@ -74,14 +111,14 @@ function App() {
         {/* <Home/> */}
 
         <Switch>
-          <Route path="/" exact component={() => <Content user={user} notification={notification}/>} ></Route>
+          <Route path="/" exact component={() => <Content user={user} notification={notification} addToCart={addToCart}  /> } ></Route>
           {/* <Route path="/info-account" exact component={() => <Login />} ></Route> */}
           <Route path="/login" exact component={() => <Login notification={notification} />} ></Route>
           <Route path="/signup" exact component={() => <Signup notification={notification} user={user} setReload={setReload} />} ></Route>
           <Route path="/mobile" exact component={() => <About notification={notification} user={user} />} ></Route>
           <Route path="/cart" exact component={() => <Cart notification={notification} user={user} />} ></Route>
           <Route path="/information-user" exact component={() => <User notification={notification} user={user} />} ></Route>
-          <Route path="/game/:id" exact component={(match) => <Detail notification={notification} match={match} />} ></Route>
+          <Route path="/game/:id" exact component={(match) => <Detail notification={notification} match={match} addToCart={addToCart} />} ></Route>
           <Route path="/coming-soon" exact component={() => <CS notification={notification} user={user} />} ></Route>
         </Switch>
       </div>
