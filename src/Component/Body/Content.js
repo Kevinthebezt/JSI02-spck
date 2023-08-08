@@ -26,7 +26,7 @@ function Content({ user, notification, addToCart }) {
         setValueSort(newValue);
     };
     const contentStyle = {
-        height: '692px',
+        minheight: '600px',
         color: '#fff',
         lineHeight: '160px',
         textAlign: 'center',
@@ -35,86 +35,48 @@ function Content({ user, notification, addToCart }) {
 
     const treeData = [
         {
-          value: "shooter",
-          title: "Shooter",
+            value: "shooter",
+            title: "Shooter",
         },
         {
-          value: "mmoarpg",
-          title: "MMOARPG",
+            value: "mmoarpg",
+            title: "MMOARPG",
         },
         {
-          value: "arpg",
-          title: "Action Role-Playing Game",
+            value: "arpg",
+            title: "Action Role-Playing Game",
         },
         {
-          value: "strategy",
-          title: "Strategy",
+            value: "strategy",
+            title: "Strategy",
         },
         {
-          value: "fighting",
-          title: "Fighting",
+            value: "fighting",
+            title: "Fighting",
         },
         {
-          value: "racing",
-          title: "Racing",
+            value: "racing",
+            title: "Racing",
         },
         {
-          value: "sports",
-          title: "Sports",
+            value: "sports",
+            title: "Sports",
         },
         {
-          value: "cardgame",
-          title: "Card Game",
+            value: "cardgame",
+            title: "Card Game",
         },
         {
-          value: "moba",
-          title: "MOBA",
+            value: "moba",
+            title: "MOBA",
         },
         {
-          value: "fantasy",
-          title: "Fantasy",
+            value: "fantasy",
+            title: "Fantasy",
         },
-      ];
-    // const addToCart = (item) => {
-    //     const inCart = localStorage.getItem(`carts${user?.uid}`);
-    //     console.log(`carts${user?.uid}`);
-    //     const cart = {
-    //         ...item,
-    //         userId: user?.uid
-    //     };
-    //     console.log(cart);
+    ];
 
-    //     if (user?.uid) {
-    //         if (inCart) {
-    //             let isCart = JSON.parse(inCart);
-    //             let find = false;
-    //             console.log(isCart);
-    //             isCart = isCart.map(element => {
-    //                 if (element.id === item.id) {
-    //                     find = true;
-    //                     notification('warning', 'Already in cart')
-    //                     return { ...element };
-    //                 } else {
-    //                     return element;
-    //                 }
-    //             })
-    //             if (!find) {
-    //                 isCart.push(cart);
-    //             }
-    //             localStorage.setItem(`carts${user?.uid}`, JSON.stringify(isCart));
-    //             return !find ? notification('success', 'Added successfully') : ''
-    //         } else {
-    //             localStorage.setItem(`carts${user?.uid}`, JSON.stringify([cart]));
-    //             return notification('success', 'Added successfully');
-    //         }
-    //     } else {
-    //         return notification('error', 'Please login to continue')
-    //     }
-    // }
 
-    useEffect(() => {
-        request()
-    }, [valueSort])
 
     const request = async (value) => {
         const url = `https://free-to-play-games-database.p.rapidapi.com/api/games${valueSort ? "?category=" + valueSort : ''}`;
@@ -127,11 +89,13 @@ function Content({ user, notification, addToCart }) {
         };
         try {
             const response = await fetch(url, options);
-            const result = await response.json();
+            const resultRes = await response.json();
+            const result = resultRes.slice(30, resultRes?.length)
             value ? setData(result.filter((item) => item?.title?.toLowerCase().includes(value.toLowerCase()))) : setData(result);
             console.log(result);
         } catch (error) {
             console.error(error);
+            setData([])
         }
     }
 
@@ -141,6 +105,9 @@ function Content({ user, notification, addToCart }) {
         setLimit(pageSize);
     };
 
+    useEffect(() => {
+        request()
+    }, [valueSort])
     return (
         <div style={{ width: '100%', height: 'auto' }}>
             <Carousel autoplay>
@@ -167,54 +134,52 @@ function Content({ user, notification, addToCart }) {
 
             </Carousel>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '50px 0' }}>
-                    <Search
-                        placeholder="input search name game"
-                        onSearch={request}
-                        style={{
-                            width: 300,
-                        }}
-                    />
-
-                    <TreeSelect
-                        style={{
-                            width: '100%',
-                        }}
-                        value={valueSort}
-                        dropdownStyle={{
-                            maxHeight: 400,
-                            overflow: 'auto',
-                        }}
-                        treeData={treeData}
-                        placeholder="Please select"
-                        treeDefaultExpandAll
-                        onChange={onChange}
-                    />
-                </div>
 
                 <div className='statistic'>
-                    <Row gutter={16}>
-                        <Col span={5}>
-                            <Statistic title="Member" value={532375} prefix={<UserOutlined style={{ padding: '5px', backgroundColor: '#191b20', borderRadius: '10px' }} />} />
-                        </Col>
-                        <Col span={5}>
-                            <Statistic title="Games" value={1496} prefix={<DesktopOutlined style={{ padding: '5px', backgroundColor: '#191b20', borderRadius: '10px' }} />} />
-                        </Col>
-                        <Col span={4}>
-                            <Statistic title="Play time" value={10000000} prefix={<ClockCircleOutlined style={{ padding: '5px', backgroundColor: '#191b20', borderRadius: '10px' }} />} />
-                        </Col>
-                        <Col span={5}>
-                            <Statistic title="Online" value={3024} prefix={<EyeOutlined style={{ padding: '5px', backgroundColor: '#191b20', borderRadius: '10px' }} />} />
-                        </Col>
-                        <Col span={5}>
-                            <Statistic title="Playing" value={1169} prefix={<CaretRightOutlined style={{ padding: '5px', backgroundColor: '#191b20', borderRadius: '10px' }} />} />
-                        </Col>
-                    </Row>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center' }}>
+                        <Statistic title="Member" value={532375} prefix={<UserOutlined style={{ padding: '5px', backgroundColor: '#191b20', borderRadius: '10px' }} />} />
+                        <Statistic title="Games" value={1496} prefix={<DesktopOutlined style={{ padding: '5px', backgrounddivor: '#191b20', borderRadius: '10px' }} />} />
+                        <Statistic title="Play time" value={10000000} prefix={<ClockCircleOutlined style={{ padding: '5px', backgrounddivor: '#191b20', borderRadius: '10px' }} />} />
+                        <Statistic title="Online" value={3024} prefix={<EyeOutlined style={{ padding: '5px', backgrounddivor: '#191b20', borderRadius: '10px' }} />} />
+                        <Statistic title="Playing" value={1169} prefix={<CaretRightOutlined style={{ padding: '5px', backgrounddivor: '#191b20', borderRadius: '10px' }} />} />
+                    </div>
+                </div>
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '30px 0', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingRight: 20 }}>
+                        <span style={{ color: 'white', paddingRight: 10 }}>Search Game</span>
+                        <Search
+                            placeholder="Enter name game"
+                            onSearch={request}
+                            style={{
+                                width: 300,
+                            }}
+                        />
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <span style={{ color: 'white', paddingRight: 10 }}>Category</span>
+                        <TreeSelect
+                            style={{
+                                minWidth: '200px',
+                            }}
+                            allowClear={true}
+                            value={valueSort}
+                            dropdownStyle={{
+                                maxHeight: 400,
+                                overflow: 'auto',
+                            }}
+                            treeData={treeData}
+                            placeholder="Please select category game"
+                            treeDefaultExpandAll
+                            onChange={onChange}
+                        />
+                    </div>
                 </div>
 
-                <div className='gameList' style={{ justifyContent: 'space-around' }}>
+
+
+                <div className='gameList' >
                     {
-                        data.length > 0 ? data?.slice(offset, offset + limit)?.map((item) => {
+                        data?.length > 0 ? data?.slice(offset, offset + limit)?.map((item) => {
                             return (
                                 <Card
                                     hoverable
@@ -223,6 +188,7 @@ function Content({ user, notification, addToCart }) {
                                         height: 289,
                                         paddingBottom: 10,
                                         marginBottom: 30,
+                                        marginRight: 20,
                                         color: "#9e9ea3",
                                     }}
                                     cover={
@@ -258,6 +224,7 @@ function Content({ user, notification, addToCart }) {
                     {
                         data?.length > 0 && (
                             <Pagination
+                                className='pagination-content'
                                 current={Math.floor(offset / limit) + 1}
                                 pageSize={limit}
                                 total={data.length}

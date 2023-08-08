@@ -7,7 +7,7 @@ import { Col, Row } from 'antd';
 import { Carousel } from 'antd';
 
 
-function Detail({ match, user, notification,addToCart }) {
+function Detail({ match, user, notification, addToCart }) {
     // const contentStyle = {
     //     height: '160px',
     //     color: '#fff',
@@ -24,11 +24,6 @@ function Detail({ match, user, notification,addToCart }) {
         textAlign: 'center',
         background: '#364d79',
     };
-    const imgs = "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg"
-    const img = "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/03/3-32.jpg"
-    const img2 = "https://bloghomestay.vn/wp-content/uploads/2023/01/999-anh-game-3d-hinh-game-online-dep-nhat-danh-cho-game-thu_22.jpg"
-    const img3 = "https://bloghomestay.vn/wp-content/uploads/2023/01/999-anh-game-3d-hinh-game-online-dep-nhat-danh-cho-game-thu_5.jpg"
-    const img4 = "https://bloghomestay.vn/wp-content/uploads/2023/01/999-anh-game-3d-hinh-game-online-dep-nhat-danh-cho-game-thu_8.jpg"
     const [data, setData] = useState([])
     useEffect(() => {
         request()
@@ -56,7 +51,7 @@ function Detail({ match, user, notification,addToCart }) {
     console.log(data);
 
     const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-    
+
     useEffect(() => {
         const handleResize = () => {
             setScreenHeight(window.innerHeight);
@@ -71,74 +66,79 @@ function Detail({ match, user, notification,addToCart }) {
     }, []);
 
     return (
-        <div style={{ width: '100%', height: screenHeight + 140, margin: '0' }}>
-            <Row>
-                <Col span={12}>
-                <Carousel autoplay>
-                    {
-                        data?.screenshots?.map((item) => {
-                            console.log("===================", data);
-                            return (
-                                <div>
-                                    <img src={item?.image} style={{ width: '100%', height: 'auto' }} />
-                                </div>
+        <div style={{ margin: '0', padding: '0 50px' }}>
+            <h2 style={{ color: 'white' }}>{data?.title}</h2>
 
-
-                            )
-                        })
-                    }
-                </Carousel></Col>
-                <Col span={12}>
-
+            <Row wrap={true}>
+                <Col xxl={12} xs={24}>
+                    <Carousel autoplay>
+                        {
+                            data?.screenshots?.map((item) => {
+                                return (
+                                    <div style={contentStyle}>
+                                        <img src={item?.image} style={{ width: '100%', height: 'auto' }} />
+                                    </div>
+                                )
+                            })
+                        }
+                    </Carousel>
+                </Col>
+                <Col xxl={12} xs={24} style={{ padding: '0 20px' }}>
                     <Row>
-                        <Col span={24}><p style={{ color: 'grey', fontSize: '20px' }}>{data.short_description}</p></Col>
+                        <Col span={24}>
+                            <p style={{ color: 'grey', fontSize: '20px' }}>
+                                {data.short_description}
+                            </p>
+                        </Col>
                     </Row>
-                    <Row>
+                    <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Col span={12}>
-                            <Row>
-                                <Col span={18} push={6}>
+                            <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Col span={6} xs={24} xxl={12} >
+                                    <CalendarFilled style={{ color: 'green', fontSize: '50px' }} />
+                                </Col>
+                                <Col span={12} xs={24} xxl={12} >
                                     <p style={{ color: 'green' }}>RELEASE DATE: </p>
                                     <p style={{ color: 'grey', fontSize: '15px' }}>{data.release_date}</p>
                                 </Col>
-                                <Col span={6} pull={18}>
-                                    <CalendarFilled style={{ color: 'green', fontSize: '50px' }} />
-                                </Col>
+
                             </Row>
                         </Col>
 
                         <Col span={12}>
-                            <Row>
-                                <Col span={18} push={6}>
+                            <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Col span={6} xs={24} xxl={12}>
+                                    <InfoCircleFilled style={{ color: 'purple', fontSize: '50px' }} />
+                                </Col>
+                                <Col span={12} xs={24} xxl={12}>
                                     <p style={{ color: 'purple' }}>PLATFORM: </p>
                                     <p style={{ color: 'grey', fontSize: '15px' }}>{data.platform}</p>
                                 </Col>
-                                <Col span={6} pull={18}>
-                                    <InfoCircleFilled style={{ color: 'purple', fontSize: '50px' }} />
-                                </Col>
+
                             </Row>
                         </Col>
                     </Row>
                     <Row>
                         <Col span={12}>
-                            <Row>
-                                <Col span={18} push={6}>
+                            <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Col span={6} xs={24} xxl={12}>
+                                    <TagFilled style={{ color: 'blue', fontSize: '50px' }} />
+                                </Col>
+                                <Col span={12} xs={24} xxl={12}>
                                     <p style={{ color: 'blue' }}>GENRE:</p>
                                     <p style={{ color: 'grey', fontSize: '15px' }}>{data.genre}</p>
-                                </Col>
-                                <Col span={6} pull={18}>
-                                    <TagFilled style={{ color: 'blue', fontSize: '50px' }} />
                                 </Col>
                             </Row>
                         </Col>
 
                         <Col span={12}>
-                            <Row>
-                                <Col span={18} push={6}>
+                            <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Col span={6} xs={24} xxl={12}>
+                                    <StarFilled style={{ color: 'yellow', fontSize: '50px' }} />
+                                </Col>
+                                <Col span={12} xs={24} xxl={12}>
                                     <p style={{ color: 'yellow' }}>PUBLISHER:</p>
                                     <p style={{ color: 'grey', fontSize: '15px' }}>{data.publisher}</p>
-                                </Col>
-                                <Col span={6} pull={18}>
-                                    <StarFilled style={{ color: 'yellow', fontSize: '50px' }} />
                                 </Col>
                             </Row>
                         </Col>
@@ -151,10 +151,10 @@ function Detail({ match, user, notification,addToCart }) {
                 </Col>
                 {/* </div> */}
             </Row>
-            <Row style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column', color: 'grey'}}>
+            <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', color: 'grey', paddingTop: 30 }}>
                 <h2>Description</h2>
-                <Col span={16} >
-                    <p  style={{ fontSize:'17px' }}>{data.description}</p>
+                <Col span={16} xs={24} xxl={12}>
+                    <p style={{ fontSize: '17px' }}>{data.description}</p>
                 </Col>
             </Row>
             {/* <Carousel autoplay>

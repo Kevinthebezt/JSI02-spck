@@ -3,11 +3,12 @@
 } */
 
 .gameList {
-    padding: 50px;
+    padding: 50px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .games {
@@ -39,6 +40,7 @@
 
 .Footer {
     color: rgb(158, 158, 163);
+    padding-bottom: 30px;
   }
 
 .ant-empty-description {
@@ -67,3 +69,20 @@
     background-color: #191b20;
     border-radius: 10px;
 } */
+
+
+.pagination-content {
+    color: aliceblue;
+}
+.pagination-content a, .pagination-content svg{
+    color: white !important;
+}
+.pagination-content .ant-pagination-item-active a{
+    color: black !important;
+}
+.btn-totop .anticon svg{
+    color: black !important;
+}
+.ant-pagination-item-ellipsis{
+    color: white !important;
+}
