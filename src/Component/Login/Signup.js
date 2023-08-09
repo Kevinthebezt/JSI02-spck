@@ -5,7 +5,7 @@ import '../../Css/Login.css'
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { Button, Checkbox, Form, Input, Card } from 'antd';
+import { Button, Carousel, Form, Input, Card } from 'antd';
 import { Col, Row } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 
@@ -14,6 +14,12 @@ import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 const Signup = ({ notification, setReload }) => {
     const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
+    const contentStyle = {
+        color: '#fff',
+        lineHeight: '160px',
+        textAlign: 'center',
+        background: '#364d79',
+    };
 
     const handleGoogleLogin = async () => {
         try {
@@ -76,43 +82,46 @@ const Signup = ({ notification, setReload }) => {
     }, []);
 
     return (
-        <div>
-            {/* <Carousel autoplay>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/671860/header.jpg?t=1686877598' />
-                    </h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/1938090/header.jpg?t=1691007781' />
-                    </h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg?t=1678296348' />
-                    </h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/1184140/header.jpg?t=1689199309' />
-                    </h3>
-                </div>
-
-            </Carousel> */}
-            <div
+        <div >
+            <div style={{ opacity: 0.5, position: 'relative' }}>
+                <Carousel autoplay>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-game-4k-1.jpg' />
+                        </h3>
+                    </div>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://gameviet.mobi/wp-content/uploads/2020/03/Hinh-Nen-Lien-Quan-Mobile-Wallpaper-Cho-Iphone-Android-1280x640.jpg' />
+                        </h3>
+                    </div>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://demoda.vn/wp-content/uploads/2022/10/hinh-nen-game-4k.jpg' />
+                        </h3>
+                    </div>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://allimages.sgp1.digitaloceanspaces.com/tipeduvn/2022/09/1662058151_20_Top-hinh-nen-game-dep-chat-luong-full-HD-khong.jpg' />
+                        </h3>
+                    </div>
+                </Carousel>
+            </div>
+            <div className='card-container'
                 style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "100vh",
-                    // position: "fixed",
-                    zIndex: "1000000"
+                    position: "absolute",
+                    top: '0',
+                    left: '0',
+                    bottom: '0',
+                    right: '0',
                 }}>
 
                 <Card style={{ width: 500 }}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <h1 style={{ color: 'white' }}>Signup</h1>
+                        <h1 style={{ color: 'white', fontSize: 40 }}>Signup</h1>
                     </div>
                     <Form
                         name="normal_login"
@@ -192,16 +201,21 @@ const Signup = ({ notification, setReload }) => {
                          Back
                      </Button> */}
                             <Row>
-
-                                <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
-                                    Google
-                                </a></Col>
-                                <Col span={8}><p style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
-                                <Col span={8}><a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/login")}>
-                                    Login
-                                </a></Col>
+                                <Col span={8}>
+                                    <a type="primary" style={{ marginTop: 10, color: 'black', fontWeight: 'bold', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
+                                        Google
+                                    </a>
+                                </Col>
+                                <Col span={8}>
+                                    <p style={{ marginTop: 10, color: 'black', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
+                                <Col span={8}>
+                                    <a type="primary" style={{ marginTop: 10, color: 'black', fontWeight: 'bold', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/login")}>
+                                        Login
+                                    </a>
+                                </Col>
 
                             </Row>
+
                         </Form.Item>
                     </Form>
                 </Card>

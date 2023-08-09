@@ -91,7 +91,7 @@ function Nav({ user, notification }) {
               },
               {
                 label: 'VIP activation',
-                key: 'coming-soon',
+                key: 'activation',
               },
               user ?
                 {
@@ -107,7 +107,12 @@ function Nav({ user, notification }) {
   const onClick = (e) => {
     if (e.key === 'logout') {
       return;
-    } else {
+    }
+    else if (e.key === 'activation') {
+      history.push(`/coming-soon`)
+      setCurrent(e.key);
+    }
+    else {
       history.push(`/${e.key}`)
       setCurrent(e.key);
     }
@@ -116,7 +121,7 @@ function Nav({ user, notification }) {
 
   return (
     <Affix offsetTop={0}>
-      <div>
+      <div style={{ position: 'relative', zIndex: 99999 }}>
         <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
       </div>
     </Affix>

@@ -19,5 +19,9 @@
 }
 
 label {
-    color: #aab3b9 !important;
+    color: #aab3b9 ;
+}
+.card-container .ant-card{
+    background-color: rgba(255, 255, 255, 0.603);
+    transform: translate(0, 0);
 }

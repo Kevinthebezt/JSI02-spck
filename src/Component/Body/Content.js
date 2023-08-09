@@ -39,24 +39,16 @@ function Content({ user, notification, addToCart }) {
             title: "Shooter",
         },
         {
-            value: "mmoarpg",
-            title: "MMOARPG",
+            value: "moba",
+            title: "MOBA",
         },
         {
-            value: "arpg",
-            title: "Action Role-Playing Game",
+            value: "fantasy",
+            title: "Fantasy",
         },
         {
             value: "strategy",
             title: "Strategy",
-        },
-        {
-            value: "fighting",
-            title: "Fighting",
-        },
-        {
-            value: "racing",
-            title: "Racing",
         },
         {
             value: "sports",
@@ -67,13 +59,22 @@ function Content({ user, notification, addToCart }) {
             title: "Card Game",
         },
         {
-            value: "moba",
-            title: "MOBA",
+            value: "mmoarpg",
+            title: "MMOARPG",
         },
         {
-            value: "fantasy",
-            title: "Fantasy",
+            value: "arpg",
+            title: "Action Role-Playing Game",
         },
+        {
+            value: "fighting",
+            title: "Fighting",
+        },
+        {
+            value: "racing",
+            title: "Racing",
+        },
+
     ];
 
 
@@ -90,7 +91,7 @@ function Content({ user, notification, addToCart }) {
         try {
             const response = await fetch(url, options);
             const resultRes = await response.json();
-            const result = resultRes.slice(30, resultRes?.length)
+            const result = resultRes.slice(20, resultRes?.length)
             value ? setData(result.filter((item) => item?.title?.toLowerCase().includes(value.toLowerCase()))) : setData(result);
             console.log(result);
         } catch (error) {
@@ -191,12 +192,12 @@ function Content({ user, notification, addToCart }) {
                                         marginRight: 20,
                                         color: "#9e9ea3",
                                     }}
-                                    // cover={
-                                    //     <img alt={item?.thumbnail} src={item?.thumbnail} onClick={() => history.push(`/game/${item?.id}`)} />
-                                    // }
+                                    cover={
+                                        <img alt={item?.thumbnail} src={item?.thumbnail} onClick={() => history.push(`/game/${item?.id}`)} />
+                                    }
                                     actions={[
-                                        <span style={{ fontWeight: '500', color: '#b1b1b5' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
-                                        <Button style={{ backgroundColor: 'transparent', width: 'auto' }} onClick={() => addToCart(item)} >Add to cart</Button>
+                                        <span style={{ fontWeight: '500', color: 'white' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
+                                        <Button style={{ backgroundColor: 'transparent', width: 'auto', color: 'white' }} onClick={() => addToCart(item)} >Add to cart</Button>
                                     ]}
                                 >
                                     <div >

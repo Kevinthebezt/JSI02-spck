@@ -143,11 +143,11 @@ function Detail({ match, user, notification, addToCart }) {
                             </Row>
                         </Col>
                     </Row>
-                    <Row>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Button className='btn' type="primary" block onClick={() => addToCart(data)}>
                             <PlaySquareOutlined /> PLAY NOW
                         </Button>
-                    </Row>
+                    </div>
                 </Col>
                 {/* </div> */}
             </Row>

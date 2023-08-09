@@ -2,10 +2,15 @@
 body {
   font-family: Roboto, sans-serif;
 }
+.container-user{
+  background: #200122; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #200122, #6f0000); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #200122, #6f0000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 .card-user {
   background: #fff;
   border-radius: 4px;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+  box-shadow: 0px 14px 80px rgba(1, 8, 130, 0.979);
   max-width: 400px;
   display: flex;
   flex-direction: row;
@@ -18,14 +23,13 @@ body {
 }
 .card-user .title {
   padding: 1rem;
-  text-align: right;
   color: green;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 20px;
 }
 .card-user .desc {
   padding: 0.5rem 1rem;
-  font-size: 12px;
+  font-size: 15px;
 }
 .card-user .actions {
   display: grid;
@@ -34,20 +38,21 @@ body {
   padding: 0.5rem 1rem;
 }
 .card-user img {
-  width: 85px;
-  height: 85px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
 }
 
 .img-avatar img{
-  width: 80px;
-  height: 80px;
+  width: 130px;
+  height: 130px;
   position: absolute;
   border-radius: 50%;
   border: 6px solid white;
-  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+  /* background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%); */
+  background-color: #5d5d5d;
   top: 15px;
-  left: 85px;
+  left: 52px;
 }
 
 .card-text {
@@ -70,7 +75,7 @@ body {
   height: 100%;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-image: url("https://m.media-amazon.com/images/S/aplus-media/vc/cab6b08a-dd8f-4534-b845-e33489e91240._CR75,0,300,300_PT0_SX300__.jpg");
+  background-image: url("https://wallpaperaccess.com/full/4605319.jpg");
   background-position: bottom center;
   background-size: cover;
 }

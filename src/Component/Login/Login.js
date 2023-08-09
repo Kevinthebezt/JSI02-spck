@@ -18,7 +18,6 @@ const Login = ({ notification }) => {
     const [screenHeight, setScreenHeight] = useState(window.innerHeight);
     const history = new useHistory();
     const contentStyle = {
-        minheight: '600px',
         color: '#fff',
         lineHeight: '160px',
         textAlign: 'center',
@@ -66,43 +65,48 @@ const Login = ({ notification }) => {
         };
     }, []);
     return (
-        <div>
-            {/* <Carousel autoplay>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/671860/header.jpg?t=1686877598' />
-                    </h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/1938090/header.jpg?t=1691007781' />
-                    </h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg?t=1678296348' />
-                    </h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>
-                        <img style={{ width: '100%' }} src='https://cdn.cloudflare.steamstatic.com/steam/apps/1184140/header.jpg?t=1689199309' />
-                    </h3>
-                </div>
+        <div >
+            <div style={{ opacity: 0.5, position: 'relative' }}>
+                <Carousel autoplay>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-game-4k-1.jpg' />
+                        </h3>
+                    </div>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://gameviet.mobi/wp-content/uploads/2020/03/Hinh-Nen-Lien-Quan-Mobile-Wallpaper-Cho-Iphone-Android-1280x640.jpg' />
+                        </h3>
+                    </div>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://demoda.vn/wp-content/uploads/2022/10/hinh-nen-game-4k.jpg' />
+                        </h3>
+                    </div>
+                    <div>
+                        <h3 style={contentStyle}>
+                            <img style={{ width: '100%', minHeight: '800px' }} src='https://allimages.sgp1.digitaloceanspaces.com/tipeduvn/2022/09/1662058151_20_Top-hinh-nen-game-dep-chat-luong-full-HD-khong.jpg' />
+                        </h3>
+                    </div>
+                </Carousel>
+            </div>
 
-            </Carousel> */}
-            <div
+            <div className='card-container'
                 style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "100vh",
-                    // position: "fixed",
-                    zIndex: "1000000"
+                    position: "absolute",
+                    top: '0',
+                    left: '0',
+                    bottom: '0',
+                    right: '0',
+
                 }}>
 
-                <Card style={{ width: 500 }}>
+                <Card style={{ minWidth: 390 }}>
                     <div style={{ display: "flex", justifyContent: "center" }}>
-                        <h1 style={{ color: 'white' }}>Login</h1>
+                        <h1 style={{ color: 'white', fontSize: 40 }}>Login</h1>
                     </div>
                     <Form
                         name="normal_login"
@@ -124,20 +128,7 @@ const Login = ({ notification }) => {
                                 placeholder="Email"
                             />
                         </Form.Item>
-                        {/* <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your password!',
-                            },
-                        ]}>
-                        <Input.Password
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Password"
-                        /> */}
+
                         <Form.Item
                             name="password"
                             rules={[
@@ -149,7 +140,7 @@ const Login = ({ notification }) => {
                             <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password" />
                         </Form.Item>
                         <a
-                            style={{ float: "right" }}
+                            style={{ float: "right", fontWeight: 'bold' }}
                             className="login-form-forgot"
                             href="#"
                         // onClick={handleForgotPassword}
@@ -159,7 +150,7 @@ const Login = ({ notification }) => {
                         {/* </Form.Item> */}
                         <Form.Item>
                             <Form.Item name="remember" valuePropName="checked" noStyle>
-                                <Checkbox>Remember me</Checkbox>
+                                <Checkbox style={{ color: 'black !important', fontWeight: 'bold', }}>Remember me</Checkbox>
                             </Form.Item>
                         </Form.Item>
                         <Form.Item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -172,14 +163,14 @@ const Login = ({ notification }) => {
 
                             <Row>
                                 <Col span={8}>
-                                    <a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
+                                    <a type="primary" style={{ marginTop: 10, color: 'black', fontWeight: 'bold', textDecoration: 'none', display: 'flex', justifyContent: 'right' }} onClick={handleGoogleLogin}>
                                         Google
                                     </a>
                                 </Col>
                                 <Col span={8}>
-                                    <p style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
+                                    <p style={{ marginTop: 10, color: 'black', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}>|</p></Col>
                                 <Col span={8}>
-                                    <a type="primary" style={{ marginTop: 10, color: '#aab3b9', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/signup")}>
+                                    <a type="primary" style={{ marginTop: 10, color: 'black', fontWeight: 'bold', textDecoration: 'none', display: 'flex', justifyContent: 'left' }} onClick={() => history.push("/signup")}>
                                         Sign up
                                     </a>
                                 </Col>
