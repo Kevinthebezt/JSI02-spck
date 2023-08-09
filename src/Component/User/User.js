@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Row } from 'antd';
 import { useEffect, useState } from 'react'
 import "../../Css/User.css"
+import { InstagramOutlined, GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
 
 const User = ({ user }) => {
     console.log(user)
@@ -22,25 +23,23 @@ const User = ({ user }) => {
     }, []);
 
     return (
-        <div class="card-user">
-            <div class="img-avatar">
+        <div className="card-user">
+            <div className="img-avatar">
                 <img src={user?.avt} />
-
-
             </div>
-            <div class="card-text">
-                <div class="portada">
+            <div className="card-text">
+                <div className="portada">
 
                 </div>
-                <div class="title-total">
-                    <div class="title">Ant Collector</div>
-                    <h2>Morgan Sweeney</h2>
+                <div className="title-total">
+                    <div className="title">Member</div>
+                    <h2>{user?.userName}</h2>
 
-                    <div class="desc">Morgan has collected ants since they were six years old and now has many dozen ants but none in their pants.</div>
-                    <div class="actions">
-                        <button><i class="far fa-heart"></i></button>
-                        <button><i class="far fa-envelope"></i></button>
-                        <button><i class="fas fa-user-friends"></i></button>
+                    <div className="desc">Email: &nbsp;{user?.email}</div>
+                    <div className="actions">
+                        <button><FacebookOutlined /></button>
+                        <button><GoogleOutlined /></button>
+                        <button><InstagramOutlined /></button>
                     </div></div>
 
             </div>
