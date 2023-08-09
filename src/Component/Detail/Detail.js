@@ -70,7 +70,7 @@ function Detail({ match, user, notification, addToCart }) {
             <h2 style={{ color: 'white' }}>{data?.title}</h2>
 
             <Row wrap={true}>
-                <Col xxl={12} xs={24}>
+                <Col md={12} xxl={12} xs={24}>
                     <Carousel autoplay>
                         {
                             data?.screenshots?.map((item) => {
@@ -83,7 +83,7 @@ function Detail({ match, user, notification, addToCart }) {
                         }
                     </Carousel>
                 </Col>
-                <Col xxl={12} xs={24} style={{ padding: '0 20px' }}>
+                <Col md={12} xxl={12} xs={24} style={{ padding: '0 20px' }}>
                     <Row>
                         <Col span={24}>
                             <p style={{ color: 'grey', fontSize: '20px' }}>
