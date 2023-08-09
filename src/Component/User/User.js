@@ -1,13 +1,13 @@
 import React from 'react'
 import { Col, Row } from 'antd';
 import { useEffect, useState } from 'react'
-
+import "../../Css/User.css"
 
 const User = ({ user }) => {
     console.log(user)
 
     const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-    
+
     useEffect(() => {
         const handleResize = () => {
             setScreenHeight(window.innerHeight);
@@ -22,18 +22,29 @@ const User = ({ user }) => {
     }, []);
 
     return (
-        <div style={{ color: 'gray', paddingTop:'40px', paddingBottom:'40px', height:screenHeight -126 }}>
-            <Row>
-                <Col span={18} push={6} style={{textAlign:'left'}}>
-                    <h1>{user?.userName}</h1>
-                    <p>UID: {user?.uid}</p>
-                    <h3>Email: {user?.email}</h3>
+        <div class="card-user">
+            <div class="img-avatar">
+                <img src={user?.avt} />
 
-                </Col>
-                <Col span={6} pull={18}>
-                <img style={{width:'180px' }} src={user?.avt} />
-                </Col>
-            </Row>
+
+            </div>
+            <div class="card-text">
+                <div class="portada">
+
+                </div>
+                <div class="title-total">
+                    <div class="title">Ant Collector</div>
+                    <h2>Morgan Sweeney</h2>
+
+                    <div class="desc">Morgan has collected ants since they were six years old and now has many dozen ants but none in their pants.</div>
+                    <div class="actions">
+                        <button><i class="far fa-heart"></i></button>
+                        <button><i class="far fa-envelope"></i></button>
+                        <button><i class="fas fa-user-friends"></i></button>
+                    </div></div>
+
+            </div>
+
         </div>
     )
 }

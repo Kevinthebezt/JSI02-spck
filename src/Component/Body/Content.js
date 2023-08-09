@@ -191,9 +191,9 @@ function Content({ user, notification, addToCart }) {
                                         marginRight: 20,
                                         color: "#9e9ea3",
                                     }}
-                                    cover={
-                                        <img alt={item?.thumbnail} src={item?.thumbnail} onClick={() => history.push(`/game/${item?.id}`)} />
-                                    }
+                                    // cover={
+                                    //     <img alt={item?.thumbnail} src={item?.thumbnail} onClick={() => history.push(`/game/${item?.id}`)} />
+                                    // }
                                     actions={[
                                         <span style={{ fontWeight: '500', color: '#b1b1b5' }}>Price: {(item?.id * 23).toLocaleString()}$</span>,
                                         <Button style={{ backgroundColor: 'transparent', width: 'auto' }} onClick={() => addToCart(item)} >Add to cart</Button>

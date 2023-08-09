@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Button, Space } from 'antd';
 import { PlaySquareOutlined } from '@ant-design/icons';
 import { Empty } from 'antd';
-
+import emptyCart from "../../images/emptyCart.png"
 
 function Cart({ user }) {
     const history = useHistory();
@@ -37,7 +37,7 @@ function Cart({ user }) {
     })
 
     return (
-        <div className='gameList' style={{height: screenHeight - 146 }}>
+        <div className='gameList' style={{ height: screenHeight - 146 }}>
             {
                 dataCart?.length > 0 ? dataCart?.map((item) => {
                     return (
@@ -77,7 +77,10 @@ function Cart({ user }) {
                             </div>
                         </Card>
                     )
-                }) : <Empty />
+                }) : <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <img style={{ width: 200 }} src={emptyCart} />
+                    <h2 style={{ color: 'white' }}>Cart is empty</h2>
+                </div>
             }
         </div>
     );

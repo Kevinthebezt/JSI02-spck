@@ -23,7 +23,7 @@ const About = () => {
     };
 
     const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-    
+
     useEffect(() => {
         const handleResize = () => {
             setScreenHeight(window.innerHeight);
@@ -38,20 +38,23 @@ const About = () => {
     }, []);
 
     return (
-        <div style={{ width: '50%', height:screenHeight - 146, display: 'flex', flexDirection: 'column', padding: 50, margin:'auto', alignItems:'center' }}>
-            <Button.Group
+        <div style={{ height: screenHeight - 146, display: 'flex', flexDirection: 'column', padding: 50, margin: 'auto', alignItems: 'center' }}>
+            <div
                 style={{
                     marginBottom: 16,
-                    
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    alignItems: 'center'
                 }} >
-                <Button onClick={decline} disabled={size <= 48} icon={<MinusOutlined />}>
+                <Button style={{ margin: '0 20px 20px 20px', width: 200 }} onClick={decline} disabled={size <= 48} icon={<MinusOutlined />}>
                     Smaller
                 </Button>
-                <Button onClick={increase} disabled={size >= 300} icon={<PlusOutlined />}>
+                <Button style={{ margin: '0 20px 20px 20px', width: 200 }} onClick={increase} disabled={size >= 300} icon={<PlusOutlined />}>
                     Larger
                 </Button>
-            </Button.Group>
-            <QRCode 
+            </div>
+            <QRCode
                 errorLevel="H"
                 size={size}
                 iconSize={size / 4}
