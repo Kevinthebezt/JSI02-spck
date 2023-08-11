@@ -38,7 +38,7 @@ const About = () => {
     }, []);
 
     return (
-        <div style={{ height: screenHeight - 146, display: 'flex', flexDirection: 'column', padding: 50, margin: 'auto', alignItems: 'center' }}>
+        <div className='about-container' style={{ height: screenHeight - 146, display: 'flex', flexDirection: 'column', padding: 50, margin: 'auto', alignItems: 'center' }}>
             <div
                 style={{
                     marginBottom: 16,
